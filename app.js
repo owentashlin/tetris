@@ -4,10 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let squares = Array.from(document.querySelectorAll('.grid div'))
     const scoreDisplay = document.querySelector('#score')
     const startBtn = document.querySelector('#start_button')
+    const resetBtn = document.querySelector('#reset_button')
     const width = 10
     let nextRandom = 0
     let timerId
     let score = 0
+    const colors = ['red', 'yellow', 'green', 'blue', 'purple']
 
 //Tetriminoes
 const lTetromino = [
@@ -53,20 +55,23 @@ const lTetromino = [
   let random = Math.floor(Math.random()*tetriminoes.length)
   let current = tetriminoes[random][currentRotation]
 
+//draw tetrimino
   function draw() {
     current.forEach(index => {
         squares[currentPosition + index].classList.add('tetrimino') 
+        squares[currentPosition + index].style.backgroundColor = colors[random]
     })
   }
 
+//undraw tetrimino
   function unDraw() {
     current.forEach(index => {
         squares[currentPosition + index].classList.remove('tetrimino')
+        squares[currentPosition + index].style.backgroundColor = ''
     })
   }
 
-  //timerId = setInterval(moveDown, 1000)
-
+//move controls
   function control(e) {
     if(e.keyCode === 37){
         moveLeft()
@@ -131,10 +136,10 @@ const lTetromino = [
     draw()
   }
 
+//next up display
 const displaySquares = document.querySelectorAll('.mini-grid div')
 const displayWidth = 4
 let displayIndex = 0
-
 
 const upNextTetrimino = [
     [1, displayWidth+1, displayWidth*2+1, 2],
@@ -147,12 +152,15 @@ const upNextTetrimino = [
 function displayShape() {
     displaySquares.forEach(square => {
         square.classList.remove('tetrimino')
+        square.style.backgroundColor = ''
     })
     upNextTetrimino[nextRandom].forEach(index => {
         displaySquares[displayIndex + index].classList.add('tetrimino')
+        displaySquares[displayIndex + index].style.backgroundColor = colors[nextRandom] 
     })
 }
 
+//game scoring and end of game functions
 startBtn.addEventListener('click', () => {
     if (timerId) {
         clearInterval(timerId)
@@ -174,6 +182,7 @@ function addScore() {
         row.forEach(index => {
             squares[index].classList.remove('taken')
             squares[index].classList.remove('tetrimino')
+            squares[index].style.backgroundColor = ''
         })
         const squaresRemoved = squares.splice(i, width)
         squares = squaresRemoved.concat(squares)
@@ -189,16 +198,8 @@ function gameOver() {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
+resetBtn.addEventListener('click', () => {
+        window.location.reload()
+})
 
 })

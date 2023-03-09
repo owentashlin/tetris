@@ -1,12 +1,37 @@
+body{
+    background: rgb(159, 23, 222);
+    background: linear-gradient(0deg, rgb(79, 14, 109) 0%, rgb(253, 173, 0) 100%);
+    background-repeat: no-repeat;
+    max-width: 800px;
+    max-height: 1000px;
+}
+
+.game {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+    padding: 100px;
+}
+
 .container {
     display: flex;
+    margin: auto;
+    justify-content: center;
+}
+
+h1 {
+    text-shadow: 1px 1px 2px orange, 1px 1px .9em rgb(254, 4, 254);
 }
 
 button {
-    margin: 5px;
+    margin: 2px;
     background-color: black;
-    box-shadow: inset 0 0 10px greenyellow;
-    color: greenyellow;
+    box-shadow: inset 0 0 10px rgb(225, 228, 221);
+    color: rgb(225, 228, 221);
+    width: 100px;
+    padding: 5px;
+    font-size: 16px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    border-radius: 7px;
 }
 
 .grid {
@@ -15,8 +40,9 @@ button {
     display: flex;
     flex-wrap: wrap;
     border: 1px solid black;
-    background-color: black;
-    box-shadow: inset 0 0 40px greenyellow;
+    background: rgb(92,1,133);
+    background: linear-gradient(0deg, rgba(92,1,133,1) 0%, rgba(0,0,0,1) 100%);
+    box-shadow: inset 0 0 40px rgb(225, 228, 221);
     z-index: -1;
 }
 
@@ -26,25 +52,33 @@ button {
 }
 
 .tetrimino {
-    background-color: rgb(0, 0, 0);
-    box-shadow: inset 0 0 5px greenyellow;
+    box-shadow: inset 0 0 5px rgb(225, 228, 221);
 }
 
 .mini-grid {
-    margin-left: 50px;
+    margin: auto;
+    margin-top: 5px;
     width: 80px;
     height: 80px;
     display: flex;
     flex-wrap: wrap;
     border: 1px solid black;
-    background-color: black;
-    box-shadow: inset 0 0 25px greenyellow;
-
+    background: rgb(92,1,133);
+    background: linear-gradient(0deg, rgba(92,1,133,1) 0%, rgba(0,0,0,1) 100%);
+    box-shadow: inset 0 0 15px rgb(225, 228, 221);
 }
 
 .mini-grid div {
     height: 20px;
     width: 20px;
-
 }
 
+#score {
+    background-color: black;
+    color:rgb(225, 228, 221);
+    padding: 2px 30px;
+    margin-left: 5px;
+    border-radius: 7px;
+    box-shadow: inset 0 0 7px rgb(225, 228, 221);
+    border: 2px solid black;
+}

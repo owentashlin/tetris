@@ -3,12 +3,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const grid = document.querySelector('.grid')
     let squares = Array.from(document.querySelectorAll('.grid div'))
     const scoreDisplay = document.querySelector('#score')
+    const levelDisplay = document.querySelector('#level')
     const startBtn = document.querySelector('#start_button')
     const resetBtn = document.querySelector('#reset_button')
     const width = 10
     let nextRandom = 0
     let timerId
     let score = 0
+    let level = 0
     const colors = ['red', 'yellow', 'green', 'blue', 'purple']
 
 //Tetriminoes
@@ -102,6 +104,7 @@ const lTetromino = [
         draw()
         displayShape()
         addScore()
+        addLevel()
         gameOver()
     }
   }
@@ -167,7 +170,7 @@ startBtn.addEventListener('click', () => {
         timerId = null
     } else {
         draw()
-        timerId = setInterval(moveDown, 1000)
+          timerId = setInterval(moveDown, 1000)
         nextRandom = Math.floor(Math.random()*tetriminoes.length)
         displayShape()
     }
@@ -191,6 +194,29 @@ function addScore() {
     }
 }
 
+function addLevel() {
+    if (score < 99){
+      level = 1 
+    } else if (score >= 100 && score <= 199) {
+      level = 2
+    } else if (score >= 200 && score <= 299) {
+      level = 3
+    } else if (score >= 300 && score <= 399) {
+      level = 4
+    } else if (score >= 400 && score <= 499) {
+      level = 5
+    } else if (score >= 500 && score <= 599) {
+      level = 6
+    } else if (score >= 600 && score <= 699) {
+      level = 7
+    } else if (score >= 700 && score <= 799) {
+      level = 8
+    } else if (score >= 800 && score <= 899) {
+      level = 9
+    }
+  levelDisplay.innerHTML = level
+}
+
 function gameOver() {
     if(current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
         scoreDisplay.innerHTML = 'Game Over'
@@ -200,6 +226,6 @@ function gameOver() {
 
 resetBtn.addEventListener('click', () => {
         window.location.reload()
-})
+  })
 
 })

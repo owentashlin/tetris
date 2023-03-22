@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let nextRandom = 0
     let timerId
     let score = 0
-    let level = 0
+    let level = 1
     const colors = ['red', 'yellow', 'green', 'blue', 'purple']
 
 //Tetriminoes
@@ -170,7 +170,7 @@ startBtn.addEventListener('click', () => {
         timerId = null
     } else {
         draw()
-          timerId = setInterval(moveDown, 1000)
+          timerId = setInterval(moveDown, (( 11 - level ) * 100 ))
         nextRandom = Math.floor(Math.random()*tetriminoes.length)
         displayShape()
     }

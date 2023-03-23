@@ -29,10 +29,10 @@ const lTetromino = [
 ]
 
 const sTetromino = [
-    [0,width,width+1,width*2+1],
-    [width+1, width+2,width*2,width*2+1],
-    [0,width,width+1,width*2+1],
-    [width+1, width+2, ,width*2+1]
+    [width+1, width+2, width*2, width*2+1],
+    [1, width+1, width+2, width*2+2],
+    [width+1, width+2, width*2, width*2+1],
+    [1, width+1, width+2, width*2+2]
   ]
 
 const zTetromino = [
@@ -65,8 +65,8 @@ const iTetromino = [
 
   const tetriminoes = [jTetromino, lTetromino, sTetromino, zTetromino, tTetromino, oTetromino, iTetromino]
 
-  let currentPosition = 4
-  let currentRotation = 0
+  let currentPosition = 3
+  let currentRotation = 1
   
   let random = Math.floor(Math.random()*tetriminoes.length)
   let current = tetriminoes[random][currentRotation]

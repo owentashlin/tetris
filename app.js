@@ -11,45 +11,59 @@ document.addEventListener('DOMContentLoaded', () => {
     let timerId
     let score = 0
     let level = 1
-    const colors = ['red', 'yellow', 'green', 'blue', 'purple']
+    const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'grey']
 
 //Tetriminoes
-const lTetromino = [
+const jTetromino = [
     [1, width+1, width*2+1, 2],
     [width, width+1, width+2, width*2+2],
     [1, width+1, width*2+1, width*2],
-    [width, width*2, width*2+1, width*2+2]
-  ]
+    [0, width, width+1, width+2]
+  ] 
 
-  const zTetromino = [
+const lTetromino = [
+  [0, width+1, width*2+1, 1],
+  [width, width+1, width+2, 2],
+  [1, width+1, width*2+1, width*2+2],
+  [width, width+1, width+2, width*2]
+]
+
+const sTetromino = [
     [0,width,width+1,width*2+1],
     [width+1, width+2,width*2,width*2+1],
     [0,width,width+1,width*2+1],
-    [width+1, width+2,width*2,width*2+1]
+    [width+1, width+2, ,width*2+1]
   ]
 
-  const tTetromino = [
+const zTetromino = [
+    [width, width+1, width*2+1, width*2+2],
+    [1, width, width+1, width*2],
+    [width, width+1, width*2+1, width*2+2],
+    [1, width, width+1, width*2]
+  ]  
+
+const tTetromino = [
     [1,width,width+1,width+2],
     [1,width+1,width+2,width*2+1],
     [width,width+1,width+2,width*2+1],
     [1,width,width+1,width*2+1]
   ]
 
-  const oTetromino = [
+const oTetromino = [
     [0,1,width,width+1],
     [0,1,width,width+1],
     [0,1,width,width+1],
     [0,1,width,width+1]
   ]
 
-  const iTetromino = [
+const iTetromino = [
     [1,width+1,width*2+1,width*3+1],
     [width,width+1,width+2,width+3],
     [1,width+1,width*2+1,width*3+1],
     [width,width+1,width+2,width+3]
   ]
 
-  const tetriminoes = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino]
+  const tetriminoes = [jTetromino, lTetromino, sTetromino, zTetromino, tTetromino, oTetromino, iTetromino]
 
   let currentPosition = 4
   let currentRotation = 0
@@ -85,7 +99,7 @@ const lTetromino = [
         moveDown()
     }
   }
-  document.addEventListener('keyup', control)
+  document.addEventListener('keydown', control)
 
   function moveDown() {
     unDraw()
@@ -165,12 +179,13 @@ function displayShape() {
 
 //game scoring and end of game functions
 startBtn.addEventListener('click', () => {
-    if (timerId) {
+let time = (( 11 - level ) * 100 )
+  if (timerId) {
         clearInterval(timerId)
         timerId = null
     } else {
         draw()
-          timerId = setInterval(moveDown, (( 11 - level ) * 100 ))
+          timerId = setInterval(moveDown, time)
         nextRandom = Math.floor(Math.random()*tetriminoes.length)
         displayShape()
     }
